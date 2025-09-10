@@ -1,0 +1,97 @@
+:root {
+  --vino: #490c19;
+  --dark: #210F13;
+  --navy: #001e34;
+  --rose: #82545d;
+  --beige: #b59d9f;
+  --morado: #320b21;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--dark);
+  color: var(--beige);
+}
+
+header {
+  background-color: var(--vino);
+  color: var(--beige);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--beige);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--rose);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--morado);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  background-color: var(--vino);
+  transform: translateY(-4px);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.card p {
+  margin: 0.2rem 0;
+  font-size: 0.875rem;
+  color: var(--beige);
+}
+
+.card a {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  background-color: var(--rose);
+  color: var(--beige);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.card a:hover {
+  background-color: var(--navy);
+}
