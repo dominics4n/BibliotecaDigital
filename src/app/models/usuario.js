@@ -4,6 +4,6 @@ export const UsuarioSchema = {
   apellido: String,
   nomUsuario: String,
   contrasena: String,
-  rol: String,
+  rol: {type:String, default: "user"},
   correo: String,
 };
