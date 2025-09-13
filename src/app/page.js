@@ -10,21 +10,6 @@ export default function Biblioteca() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // Datos de ejemplo
-    setLibros([
-      { id: 1, titulo: "Fundamentos de Seguridad Informática", autor: "Juan Pérez", anno: 2022, idioma: "Español", categoria: "Seguridad", vistas: 15, url: "/books/seguridad.pdf" },
-      { id: 2, titulo: "Machine Learning para Principiantes", autor: "María López", anno: 2021, idioma: "Español", categoria: "IA", vistas: 8, url: "/books/ml.pdf" },
-    ]);
-
-    // Revisar si hay token en cookie
-    const token = Cookies.get("token");
-    if (token) {
-      // Puedes llamar a tu API para obtener info real del usuario
-      setUser({ nomUsuario: "Invitado" }); // ejemplo
-    }
-  }, []);
-
   return (
     <main style={{ padding: "2rem" }}>
       <header>

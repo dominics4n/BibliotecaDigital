@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { correo, password } = await req.json();
+    const { correo, contrasena } = await req.json();
 
     const client = await clientPromise;
     const db = client.db("biblioteca");
@@ -16,7 +16,7 @@ export async function POST(req) {
     }
 
     // Verificar contraseña
-    const valido = await bcrypt.compare(password, user.password);
+    const valido = await bcrypt.compare(contrasena, user.contrasena);
     if (!valido) {
       return NextResponse.json({ error: "Credenciales inválidas" }, { status: 400 });
     }

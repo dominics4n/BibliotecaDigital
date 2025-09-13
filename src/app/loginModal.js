@@ -50,8 +50,8 @@ export default function LoginModal({ isOpen, onClose, setUser }) {
           <div className={`form-content ${showRegister ? "hide" : ""}`}>
             <h2>Iniciar Sesión</h2>
             <form onSubmit={handleLogin}>
-              <label>Usuario</label>
-              <input type="text" placeholder="Usuario" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <label>Correo</label>
+              <input type="text" placeholder="Correo" value={email} onChange={(e) => setEmail(e.target.value)} />
               <label>Contraseña</label>
               <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
               <button type="submit">Acceder</button>

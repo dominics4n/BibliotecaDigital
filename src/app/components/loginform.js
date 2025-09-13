@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 export default function LoginForm({ setUser }) {
   const [correo, setCorreo] = useState('');
-  const [password, setPassword] = useState('');
+  const [contrasena, setContrasena] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
@@ -14,14 +14,22 @@ export default function LoginForm({ setUser }) {
       const res = await fetch('/api/usuarios/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo, password }), // 👈 Ahora coincide con el backend
+        body: JSON.stringify({ correo, contrasena }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        Cookies.set('token', data.token, { expires: 1 }); // 1 día
-        setUser({ correo, rol: data.rol }); // 👈 guardamos también el rol para usarlo en admin
+        // Guardar token y user
+        Cookies.set('token', data.token, { expires: 1 });
+        setUser({ correo, rol: data.rol });
+
+        // Redirigir según rol
+        if (data.rol === 'admin') {
+          window.location.href = '/dash/admin';
+        } else {
+          window.location.href = '/dash/user';
+        }
       } else {
         setError(data.error || 'Error al iniciar sesión');
       }
@@ -52,8 +60,8 @@ export default function LoginForm({ setUser }) {
       <input
         type="password"
         placeholder="Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={contrasena}
+        onChange={(e) => setContrasena(e.target.value)}
         required
         className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />

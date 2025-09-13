@@ -6,14 +6,16 @@ export default function RegisterForm({ setUser }) {
   const [apellido, setApellido] = useState('');
   const [nomUsuario, setNomUsuario] = useState('');
   const [correo, setCorreo] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [password, setContrasena] = useState('');
+  const [confirmContrasena, setConfirmContrasena] = useState('');
+  const [error, setError] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setError('');
 
-    if (password !== confirmPassword) {
-      alert("Las contraseñas no coinciden");
+    if (password !== confirmContrasena) {
+      setError("Las contraseñas no coinciden");
       return;
     }
 
@@ -25,34 +27,48 @@ export default function RegisterForm({ setUser }) {
           nombre,
           apellido,
           nomUsuario,
-          contrasena: password,
           correo,
-          rol: "user", // valor por defecto según tu esquema
+          password,
+          rol: "user", // valor por defecto
         }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        Cookies.set('token', data.token, { expires: 1 });
-        setUser({ correo, nomUsuario });
+        // Login automático: guardar token y actualizar estado de usuario
+        if (data.token) Cookies.set('token', data.token, { expires: 1 });
+        setUser({ correo, nomUsuario, rol: data.rol || "user" });
+
+        // Redirigir según rol
+        if (data.rol === 'admin') {
+          window.location.href = '/dash/admin';
+        } else {
+          window.location.href = '/dash/user';
+        }
       } else {
-        alert(data.message || "Error al registrar");
+        setError(data.error || "Error al registrar");
       }
     } catch (err) {
       console.error(err);
-      alert("Error en la conexión");
+      setError("Error de conexión con el servidor");
     }
   };
 
+
   return (
-    <form onSubmit={handleRegister} className="glass-card">
+    <form onSubmit={handleRegister} className="glass-card flex flex-col gap-3 p-4">
+      <h2 className="text-center font-bold text-white">Registro</h2>
+
+      {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+
       <input
         type="text"
         placeholder="Nombre"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
         required
+        className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />
       <input
         type="text"
@@ -60,6 +76,7 @@ export default function RegisterForm({ setUser }) {
         value={apellido}
         onChange={(e) => setApellido(e.target.value)}
         required
+        className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />
       <input
         type="text"
@@ -67,6 +84,7 @@ export default function RegisterForm({ setUser }) {
         value={nomUsuario}
         onChange={(e) => setNomUsuario(e.target.value)}
         required
+        className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />
       <input
         type="email"
@@ -74,22 +92,30 @@ export default function RegisterForm({ setUser }) {
         value={correo}
         onChange={(e) => setCorreo(e.target.value)}
         required
+        className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />
       <input
         type="password"
         placeholder="Contraseña"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => setContrasena(e.target.value)}
         required
+        className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />
       <input
         type="password"
         placeholder="Confirmar contraseña"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        value={confirmContrasena}
+        onChange={(e) => setConfirmContrasena(e.target.value)}
         required
+        className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />
-      <button type="submit">Registrarse</button>
+      <button
+        type="submit"
+        className="bg-rose-500 hover:bg-rose-600 transition-colors p-2 rounded-xl text-white font-semibold"
+      >
+        Registrarse
+      </button>
     </form>
   );
 }
