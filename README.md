@@ -37,11 +37,18 @@ Para este proyecto se usaron los siguientes elementos:
 - **Funcionalidad usuario:** en progreso
 - **Registro usuarios:** en progreso
 
+## Novedades
+
+- ✅ Implementación de roles
+- ✅ Implementación de formularios para registro y login
+- ✅ Validación y seguridad de contraseñas
+- ✅ Correxión de datos en base de datos y mododelos JS
+
 ## Próximamente
 
-- Implementación de login y roles.
-- Dashboard para administradores
-- Validación y seguridad de contraseñas (bcrypt)
+- Dashboard para administradores y usuarios
 - Mejoras de UI con Tailwind
 - Funcionalidad de búsqueda avanzada
+- Adición de categorías
+- Adición de libros
 - Añadir otro tipo de artículos y documentos académicos
