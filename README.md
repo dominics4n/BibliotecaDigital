@@ -5,6 +5,38 @@ Pequeña propuesta de plataforma para una biblioteca digital, orientada a temas 
 ![Documentacion](https://img.shields.io/badge/Documentation-In_progress-490c19?style=for-the-badge&logo=hackthebox)
 ![Deep Learning](https://img.shields.io/badge/Test-In_progress-991e34?style=for-the-badge&logo=tensorflow)
 
+## Cómo instalar
+### 1️⃣ Clonar el repositorio
+```
+git clone <URL_DE_TU_REPOSITORIO>
+cd <NOMBRE_DEL_PROYECTO>
+```
+### 2️⃣ Instalar dependencias
+
+Asegúrate de tener Node.js(versión LTS) instalado, usando:
+```
+npm install
+```
+### Configurar variables de entorno 
+
+Crea un archivo .env.local en la raíz del proyecto con el siguiente contenido:
+```
+MONGODB_URI="mongodb+srv://<usuario>:<password>@<cluster>.mongodb.net/<DBNAME>?retryWrites=true&w=majority"
+JWT_SECRET="tu_secreto_super_seguro"
+
+```
+> Nota: considera que el **JWT_SECRET** debe de ser lo más extenso posible
+
+### 4️⃣ Ejecutar el servidor en modo desarrollo
+En terminal debes de escribir
+```
+npm run dev
+```
+Posteriormente en tu navegador de confianza debes ir a:
+```
+http://localhost:3000/
+```
+
 ## Objetivo
 
 Actividad con constante seguimiento y evolución dado a que está pensada para una materia en específico en el que se planea:
@@ -47,8 +79,9 @@ Para este proyecto se usaron los siguientes elementos:
 ## Próximamente
 
 - Dashboard para administradores y usuarios
-- Mejoras de UI con Tailwind
+- Mejoras de UI
 - Funcionalidad de búsqueda avanzada
 - Adición de categorías
 - Adición de libros
 - Añadir otro tipo de artículos y documentos académicos
+

@@ -10,6 +10,16 @@ export default function Biblioteca() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    // Solo para usuarios
+    if (user && user.rol === "user") {
+      fetch("/api/libros")
+        .then((res) => res.json())
+        .then((data) => setLibros(data))
+        .catch((err) => console.error(err));
+    }
+  }, [user]);
+
   return (
     <main style={{ padding: "2rem" }}>
       <header>
@@ -32,25 +42,30 @@ export default function Biblioteca() {
         </nav>
       </header>
 
-      <div className="grid">
-        {libros.map(libro => (
-          <div key={libro.id} className="card">
-            <h2>{libro.titulo}</h2>
-            <p>👤 {libro.autor}</p>
-            <p>📅 {libro.anno}</p>
-            <p>🌐 {libro.idioma}</p>
-            <p>📂 {libro.categoria}</p>
-            <p>👀 {libro.vistas} vistas</p>
-            <a href={libro.url} target="_blank" rel="noopener noreferrer">📖 Leer PDF</a>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {libros.length === 0 ? (
+          <p className="text-white col-span-full text-center">
+            No hay libros disponibles
+          </p>
+        ) : (
+          libros.map((libro) => (
+            <div key={libro.idLibro} className="bg-gray-800 p-4 rounded-2xl shadow-md">
+              <h2>{libro.titulo}</h2>
+              <p>👤 Autor: {libro.autorId}</p>
+              <p>📅 Año: {libro.anno}</p>
+              <p>🌐 Idioma: {libro.idioma}</p>
+              <p>📂 Categoría: {libro.categoriaId}</p>
+              <p>👀 Vistas: {libro.vistas}</p>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Modal de login y registro */}
-      <LoginModal 
-        isOpen={isLoginOpen} 
-        onClose={() => setIsLoginOpen(false)} 
-        setUser={setUser} 
+      <LoginModal
+        isOpen={isLoginOpen}
+        onClose={() => setIsLoginOpen(false)}
+        setUser={setUser}
       />
     </main>
   );
