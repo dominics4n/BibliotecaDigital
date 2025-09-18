@@ -255,3 +255,38 @@ nav button:hover {
   position: absolute;
   width: 100%;
 }
+
+/*SIDEBAR*/
+.admin-sidebar {
+  width: 220px;
+  background-color: var(--vino);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-btn {
+  background-color: var(--morado);
+  color: var(--beige);
+  border: none;
+  border-radius: 1rem 0 0 1rem;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-btn:hover {
+  background-color: var(--rose);
+  color: var(--beige);
+  transform: translateX(4px);
+}
+
+.sidebar-btn.activo {
+  background-color: var(--rose);
+  color: var(--beige);
+  font-weight: bold;
+}

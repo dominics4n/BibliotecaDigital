@@ -6,7 +6,7 @@ import LoginModal from "./loginModal";
 import AgregarLibro from "./libro"; // componente de agregar libro
 import "../styles/globals.css";
 
-export default function Biblioteca() {
+export default function AdminDash() {
   const [libros, setLibros] = useState([]);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [user, setUser] = useState(null);
