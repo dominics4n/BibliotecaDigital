@@ -85,3 +85,7 @@ Para este proyecto se usaron los siguientes elementos:
 - Adición de libros
 - Añadir otro tipo de artículos y documentos académicos
 
+### Revisiones
+
+- usar cors
+- 
