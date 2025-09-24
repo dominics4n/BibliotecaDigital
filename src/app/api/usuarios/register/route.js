@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 export async function POST(req) {
   try {
     const body = await req.json();
-    console.log("📥 Body recibido:", body);
+    console.log("📥 Body recibido, soy register/route.js btw: ", body);
 
     const { nombre, apellido, nomUsuario, correo, password } = body;
     if (!nombre || !apellido || !nomUsuario || !correo || !password) {

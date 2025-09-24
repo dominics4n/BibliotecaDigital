@@ -44,7 +44,7 @@ export default function RegisterForm({ setUser }) {
         if (data.rol === 'admin') {
           window.location.href = '/dash/admin';
         } else {
-          window.location.href = '/dash/user';
+          window.location.href = '/';
         }
       } else {
         setError(data.error || "Error al registrar");
