@@ -26,8 +26,9 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-
-    const valido = await bcrypt.compare(password, user.password);
+    console.log("hola soy password: " + password);
+    console.log("hola soy user.password: " + user.contrasena);
+    const valido = await bcrypt.compare(password, user.contrasena);
     console.log("Contraseña válida:", valido);
     if (!valido) {
       return new Response(
