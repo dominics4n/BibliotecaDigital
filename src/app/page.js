@@ -5,8 +5,9 @@ import Cookies from "js-cookie";
 import LoginModal from "./loginModal";
 import "../styles/globals.css";
 import AgregarLibro from "./components/agregarlibro"; // Ajusta la ruta si es necesario
-// import AgregarUsuario from ".components/agregarUsuario"; // Si tienes este componente
 import AgregarArticulo from "./components/agregararticulo";
+
+import RegisterForm from "./components/registrer";
 
 export default function Biblioteca() {
   const [libros, setLibros] = useState([]);
@@ -61,7 +62,7 @@ export default function Biblioteca() {
       case "agregarArticulo":
         return <AgregarArticulo />
       case "agregarUsuario":
-        return <AgregarUsuario />; // Asegúrate de importar o definir
+        return <RegisterForm />; // Asegúrate de importar o definir
       case "libros":
         return libros.length === 0 ? (
           <p className="text-white text-center">No hay libros disponibles</p>

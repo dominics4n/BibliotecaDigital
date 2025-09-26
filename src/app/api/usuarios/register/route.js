@@ -7,8 +7,8 @@ export async function POST(req) {
     const body = await req.json();
     console.log("📥 Body recibido, soy register/route.js btw: ", body);
 
-    const { nombre, apellido, nomUsuario, correo, password } = body;
-    if (!nombre || !apellido || !nomUsuario || !correo || !password) {
+    const { nombre, apellido, nomUsuario, correo, password, rol } = body;
+    if (!nombre || !apellido || !nomUsuario || !correo || !password || !rol) {
       return new Response(JSON.stringify({ error: "Faltan campos" }), { status: 400 });
     }
 
@@ -31,7 +31,7 @@ export async function POST(req) {
       nomUsuario,
       correo,
       contrasena: hashed,
-      rol: "user",
+      rol,
       creado: new Date(),
     });
 
@@ -39,14 +39,14 @@ export async function POST(req) {
 
     // Crear token JWT
     const token = jwt.sign(
-      { id: nuevo.insertedId, rol: "user" },
+      { id: nuevo.insertedId, rol},
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
     // Devolver token junto con info del usuario
     return new Response(
-      JSON.stringify({ message: "Usuario registrado", token, rol: "user" }),
+      JSON.stringify({ message: "Usuario registrado", token, rol}),
       { status: 201 }
     );
 
