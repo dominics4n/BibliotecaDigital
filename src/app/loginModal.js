@@ -52,9 +52,17 @@ export default function LoginModal({ isOpen, onClose, setUser }) {
             <h2>Iniciar Sesión</h2>
             <form onSubmit={handleLogin}>
               <label>Correo</label>
-              <input type="text" placeholder="Correo" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="text" 
+              pattern="([A-Za-z0-9]+)(@)(([A-Za-z]+)(\.))+([A-Za-z])+" 
+              title="ejemplo@ejemplo.ejemplo"
+              required
+              placeholder="Correo" value={email} onChange={(e) => setEmail(e.target.value)} />
               <label>Contraseña</label>
-              <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <input type="password" 
+              pattern="(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[0-9])(?=\S*[^a-zA-Z0-9\s])\S{8,}"
+              title="Debe contener Mayusculas, minusculas, numeros y caracteres especiales, al menos 8 caracteres"
+              required
+              placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
               <button type="submit">Acceder</button>
             </form>
             <p>

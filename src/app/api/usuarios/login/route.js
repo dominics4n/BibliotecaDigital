@@ -9,6 +9,7 @@ export async function POST(req) {
     const { email, password } = body;
 
     if (!email || !password) {
+      console.log("Te falta algo no me preguntes que:", body);
       return new Response(
         JSON.stringify({ error: "Faltan datos de email o password" }),
         { status: 400 }

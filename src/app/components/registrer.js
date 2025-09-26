@@ -32,6 +32,7 @@ export default function RegisterForm({ setUser }) {
   
   
   const handleRegister = async (e) => {
+    console.log("active el forms");
     e.preventDefault();
     setError('');
 
@@ -44,7 +45,6 @@ export default function RegisterForm({ setUser }) {
       roldb = rolform;
       console.log("hola soy roldb en if " + roldb);
     }
-    console.log("hola soy roldb fuera de if " + roldb);
     try {
       const res = await fetch('/api/usuarios/register', {
         method: 'POST',
@@ -68,7 +68,7 @@ export default function RegisterForm({ setUser }) {
 
         // Redirigir según rol
         if (data.rol === 'admin') {
-          window.location.href = '/dash/admin';
+          window.location.href = '/';
         } else {
           window.location.href = '/';
         }
@@ -81,6 +81,7 @@ export default function RegisterForm({ setUser }) {
     }
   };
 
+  //Perdon no tengo idea de como separar un form en partes
   if(usuarioinfo && usuarioinfo.rol === "admin"){
     return (
       <form onSubmit={handleRegister} className="glass-card flex flex-col gap-3 p-4">
@@ -113,7 +114,9 @@ export default function RegisterForm({ setUser }) {
           className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
         />
         <input
-          type="email"
+          type="text"
+          pattern="([A-Za-z0-9]+)(@)(([A-Za-z]+)(\.))+([A-Za-z])+" 
+          title="ejemplo@ejemplo.ejemplo"
           placeholder="Correo"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
@@ -123,6 +126,8 @@ export default function RegisterForm({ setUser }) {
         <input
           type="password"
           placeholder="Contraseña"
+          pattern="(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[0-9])(?=\S*[^a-zA-Z0-9\s])\S{8,}"
+          title="Debe contener Mayusculas, minusculas, numeros y caracteres especiales, al menos 8 caracteres"
           value={password}
           onChange={(e) => setContrasena(e.target.value)}
           required
@@ -194,7 +199,9 @@ export default function RegisterForm({ setUser }) {
         className="p-2 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none"
       />
       <input
-        type="email"
+        type="text"
+        pattern="([A-Za-z0-9]+)(@)(([A-Za-z]+)(\.))+([A-Za-z])+" 
+        title="ejemplo@ejemplo.ejemplo"
         placeholder="Correo"
         value={correo}
         onChange={(e) => setCorreo(e.target.value)}
@@ -204,6 +211,8 @@ export default function RegisterForm({ setUser }) {
       <input
         type="password"
         placeholder="Contraseña"
+        pattern="(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[0-9])(?=\S*[^a-zA-Z0-9\s])\S{8,}"
+        title="Debe contener Mayusculas, minusculas, numeros y caracteres especiales, al menos 8 caracteres"
         value={password}
         onChange={(e) => setContrasena(e.target.value)}
         required
