@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 export async function POST(req) {
   try {
     const body = await req.json();
-    console.log("📥 Body recibido, soy register/route.js btw: ", body);
+    //console.log("📥 Body recibido, soy register/route.js btw: ", body);
 
     const { nombre, apellido, nomUsuario, correo, password, rol } = body;
     if (!nombre || !apellido || !nomUsuario || !correo || !password || !rol) {
@@ -35,7 +35,7 @@ export async function POST(req) {
       creado: new Date(),
     });
 
-    console.log("✅ Usuario insertado:", nuevo.insertedId);
+    //console.log("✅ Usuario insertado:", nuevo.insertedId);
 
     // Crear token JWT
     const token = jwt.sign(

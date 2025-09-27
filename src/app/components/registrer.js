@@ -32,7 +32,7 @@ export default function RegisterForm({ setUser }) {
   
   
   const handleRegister = async (e) => {
-    console.log("active el forms");
+    //console.log("active el forms");
     e.preventDefault();
     setError('');
 
@@ -43,7 +43,7 @@ export default function RegisterForm({ setUser }) {
     var roldb = "user";
     if(rolform){
       roldb = rolform;
-      console.log("hola soy roldb en if " + roldb);
+      //console.log("hola soy roldb en if " + roldb);
     }
     try {
       const res = await fetch('/api/usuarios/register', {
